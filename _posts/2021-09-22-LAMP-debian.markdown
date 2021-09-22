@@ -2,7 +2,8 @@
 layout: post
 title:  "LAMP en Debian/Ubuntu"
 date:   2021-09-17
-categories: Debian Ubuntu
+img: 
+tags: [sistemas, Debian, Ubuntu, Apache2, PHP, MySQL]
 ---
 
 El acrónimo LAMP está compuesto por las iniciales de sus cuatro componentes: Linux, Apache, MySQL y PHP. Estos forman la infraestructura en el servidor, que hace posible la creación y el alojamiento de páginas web dinámicas. Para montar nuestro propio entorno LAMP, primero actualizamos el sistema.
