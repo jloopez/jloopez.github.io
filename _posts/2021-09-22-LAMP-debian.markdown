@@ -2,7 +2,7 @@
 layout: post
 title:  "LAMP en Debian/Ubuntu"
 date:   2021-09-17
-img: 
+img: FF59B5E9-27DE-439E-84B3-9D0CD39EB6A8.jpeg
 tags: [sistemas, Debian, Ubuntu, Apache2, PHP, MySQL]
 ---
 
