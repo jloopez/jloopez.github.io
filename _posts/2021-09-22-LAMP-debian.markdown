@@ -52,7 +52,7 @@ jloopez:~# apt install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
 En la instalación del paquete phpmyadmin nos preguntará el servidor web que estamos utilizando, para realizar la configuración automática. En nuestro caso escogeremos la opción Apache2.
 
 ## Prueba de funcionamiento
-Para probar el funcionamiento de Apache y PHP es habitual crear un documento crear un documento info.php en el directorio /var/www/html con el siguiente contenido:
+Para probar el funcionamiento de Apache y PHP es habitual crear un documento info.php en el directorio /var/www/html con el siguiente contenido:
 ```code
 <html>
 <body>
@@ -62,7 +62,10 @@ Para probar el funcionamiento de Apache y PHP es habitual crear un documento cre
 ```
 
 Para acceder desde el navegador del cliente al servidor web vamos a utilizar la IP del servidor seguido de infor.php.
+
 Ejemplo: 192.168.1.22/info.php
+
+
 
 
 
