@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Marquitos bloqueador de páginas
-date: 2017-09-12 13:32:20 +0300
+date: 2021-09-22 00:00:00 +0300
 description:  # Add post description (optional)
 img: marc.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
