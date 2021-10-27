@@ -9,7 +9,7 @@ tags: [sistemas, Debian, Ubuntu, Apache2, PHP, MySQL]
 
 LAMP es un acrónimo compuesto por las iniciales de sus cuatro componentes: Linux, Apache, MySQL y PHP. Estos forman la infraestructura en el servidor, que hace posible la creación y el alojamiento de páginas web dinámicas.
 
-Vamos a montar nuestro entorno LAMP en una máquina virtual que ya tenemos instalada con Debian o deviradas.
+Vamos a montar nuestro entorno LAMP en una máquina virtual que ya tenemos instalada con Debian, Ubuntu o deviradas.
 
 ### Paso 1. Actualizar sistema
 ```code
