@@ -14,34 +14,33 @@ Vamos a montar nuestro entorno LAMP en una máquina virtual que ya tenemos insta
 ### Paso 1. Actualizar sistema
 ```code
 
-jloopez:~# apt update -y && apt upgrade -y
+jloopez:~# sudo apt update -y && apt upgrade -y
 
 ```
 
 ### Paso 2. Instalación de Apache
 ```code
 
-jloopez:~# apt install apache2
+jloopez:~# sudo apt install apache2
 
 ```
 Verificamos que se ha instalado y que el servicio está en marcha.
 ```code
 
-jloopez:~# systemctl status apache2
+jloopez:~# sudo systemctl status apache2
 
 ```
 ### Paso 3. Instalación de MySQL
 ```code
 
-jloopez:~# apt install mysql-common mysql-client mysql-server
+jloopez:~# sudo apt install mysql-common mysql-client mysql-server
 
 ```
-Durante la instalación del servicio se nos pedirá la contraseña del usuario root del servidor mysql.
+Durante la instalación del servicio se nos pedirá la contraseña del usuario que crea por defecto como root para el servidor mysql.
 
 ### Paso 4. Instalación de PHP
 ```code
 
-jloopez:~# apt install php libapache2-mod-php php-mysql
+jloopez:~# sudo apt install php libapache2-mod-php php-mysql
 
 ```
-
