@@ -17,28 +17,47 @@ nmap -sV -sC -O -n -oA nmapscan 192.168.0.1/24
 -iR numero --> Número de Ips aleatorias, se pueden excluir posibles Ips con --exclude <Ips> o --excludefile <fichero>
 
 Descubrimiento de equipos:
+
 Podemos usar máscaras/24
--sL: No es invasivo, lista los objetivos realizando peticiones de DNS para resolver nombres. Sirve para saber si por ejemplo www.prueba.es/24 todas las Ips son objetivos nuestros.
+-sL: No es invasivo, lista los objetivos realizando peticiones de DNS para resolver nombres. Sirve para saber si por ejemplo 192.168.1.0/24 todas las Ips son objetivos nuestros.
+    
 Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -PE -PP
+   
 -Pn No ping --> útil si se sabe que todos están activos (sino lo estuviera alguno se podría perder mucho tiempo, pero también saca falsos negativos esta opción diciendo que no esta activo), impide la fase de descubirmiento
+    
 -sn No port scan: Tras completar fase de reconocimiento no analiza puertos. Es relativamente sigilosa, y permite un pequeño reconocimiento de la red. Con privilegios envía un ACK (-PA) al 80, un SYN(-PS) al 443 y un echo request y un Timestamp request, sin privilegios siempre completa conexiones. Si el objetivo es de la red, solo usa ARP(-PR). Si se usa con otra opción solo se lanzan los paquetes de la otra opción.
+    
 -PR Ping ARP: Se usa por defecto cuando se analizan equipos de nuestra red, es más rápido que usar pings. Si no se quiere usar paquetes ARP hay que usar --send-ip.
+    
 -PS<puertos> SYN: envía paquetes de SYN a los que si responde SYN/ACK es que esta abierto(al que se reponde con RST para no acabar la conexión), si responde RST esta cerrado y si no responde es inalcanzable. En caso de no tener privilegios automáticamente se usa una conexión total. Si no se dan puertos, lo lanza al 80.
+
 -PA<puertos> ACK: Como la anterior pero con ACK, combinando ambas se obtienen mejores resultados.
+
 -PU<puertos> UDP: El objetivo es el contrario, se envían a puertos que se espera que estén cerrados. Algunos firewall solo revisan conexiones TCP. Si está cerrado se responde con port unreachable, si se responde con otro icmp o no se responde se deja como destino inalcanzable.
+
 -PE, -PP, -PM PINGS ICMP:echo replay, timestamp y addresmask. Se lanzan para descubrir si el objetivo esta activo
+
 -PY<puertos> SCTP: Envía sondas SCTP INIT al 80 por defecto, se puede responder INIT-ACK(abierto) o ABORT(cerrado) o nada o ICMP inalcanzable(inactivo)
+
 -PO<protocolos>: Se indica un protocolo en las cabeceras, por defecto 1(ICMP), 2(IGMP) y 4(Encap IP). Para los protocolos ICMP, IGMP, TCP (6) Y UDP (17) se envían las cabeceras del protocolo, para el resto solo se envía la cabecera IP. EL objetivo de esto es que por la malformación de las cabeceras, se responda Protocolo inalcanzable o respuestas del mismo protocolo para saber si está levantado.
+
 -n No DNS
 -R DNS siempre
+
 Técnicas de escaneo de puertos:
+
 -sS --> No completa la conexión por lo que no deja rastro, muy buena si se puede usar. (privilegios) Es la que se usa por defecto
 -sT --> Completa la conexión, por lo que sí que deja rastro, pero seguro que se puede usar. Por defecto sin privilegios.
 -sU --> Más lenta, para UDP. Ppalmente: DNS(53), SNMP(161,162), DHCP(67 y 68), (-sU53,161,162,67,68): abierto(respuesta), cerrado(puerto inalcanzable), filtrado (otro ICMP), abierto/filtrado (nada). En caso de tener abierto/filtrado, -sV envía numerosas peticiones para detectar alguna de las versiones que nmap soporta pudiendo detectar el auténtico estado. Aumenta mucho el tiempo.
+
 -sY --> Protocolo SCTP no llega a establecer la conexión, por lo que no hay registros, funciona como -PY
--sN,-sX,-sF --> Null, Fin, Xmas, sirven pueden penetrar algunos firewall y sacar información. Se basan en que los equipos que cumplan el estándar deberán responder con RST todas las peticiones que no tengan levantadas los lags de SYN, RST o ACK: abierto/filtrado(nada), cerrados(RST), filtrado (ICMP inalcanzable). No fiable en WIndows, CIsco, BSDI y OS/400. En unix sí.
+-sN,-sX,-sF --> Null, Fin, Xmas, sirven pueden penetrar algunos firewall y sacar información. Se basan en que los equipos que cumplan el estándar deberán responder con RST todas las peticiones que no tengan levantadas los lags de SYN, RST o ACK: abierto/filtrado(nada), cerrados(RST), filtrado (ICMP inalcanzable). 
+    
+No fiable en WIndows, CIsco, BSDI y OS/400. En unix sí.
 -sM Maimon scan: Envía flags FIN y ACK, usado para BSD, actualmente devolverá todo como cerrado.
+
 -sA, sW --> ACK y Window, sirve para detectar firewalls, para saber si los puertos están filtrados o no. El -sW sí distingue entre abiertos/cerrados ya que los abiertos responden con un valor de window distinto: abiertos(RST con ventana distinto de 0), cerrado (RST ventana = 0), filtrado (ICMP inalcanzable o nada). No todos los equipos funcionan así, así que si sale todo cerrado, es que no funciona, si salen unos pocos abiertos es que funciona bien, y si salen muchos abiertos y pocos cerrados, es que funciona al revés.
+
 -sI Idle scan --> Para los casos en los que hay un firewall activo pero que sabemos que este no filtra a una determinada Ip (o cuando queremos simplemente anonimato) podemos usar el escáner zombie (sirve para todos los puertos), para buscar posibles zombies podemos usar el scrpit ipidseq o el exploit auxiliary/scanner/ip/ipidseq. Este escaner se basa en el número IPID de los paquetes IP
 --badsum --> Envían la suma mal, los equipos descartarían los paquetes, pero los firewall podrían responder algo, sirve para detectar firewalls
 -sZ --> Escaner “raro” de SCTP, al enviar sondas con fragmentos cookie echo deben ser eliminadas si esta abierto o respondidas con ABORT si cerrado. Puede traspasar firewalls que no traspasa el init, lo malo es que no distingue entre filtrado y abierto.
@@ -63,9 +82,7 @@ Intrusive: utiliza scripts que son considerados intrusivos para la víctima o ta
 Malware: revisa si hay conexiones abiertas por códigos maliciosos o backdoors (puertas traseras)
 Safe: ejecuta scripts que no son intrusivos
 Vuln: descubre las vulnerabilidades más conocidas
-
-    All: ejecuta absolutamente todos los scripts con extensión NSE disponibles
-
+All: ejecuta absolutamente todos los scripts con extensión NSE disponibles
 Para buscar scripts:
  nmap --script-help="http-*" -> Los que empiecen por http-
  nmap --script-help="not intrusive" -> Todos menos esos
