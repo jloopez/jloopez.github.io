@@ -1,1 +1,14 @@
+---
+layout: post
+title:  "NMAP"
+date:   2021-11-09 00:00:00 +0300
+img: FF59B5E9-27DE-439E-84B3-9D0CD39EB6A8.jpeg
+tags: [sistemas, redes]
+---
+¿Qué es NMAP?
 
+Nmap es un programa de código abierto que sirve para efectuar rastreo de puertos escrito originalmente por Gordon Lyon y cuyo desarrollo se encuentra hoy a cargo de una comunidad. Fue creado originalmente para Linux aunque actualmente es multiplataforma.
+
+```code
+nmap -sV -sC -O -n -oA nmapscan 192.168.0.1/24
+```
