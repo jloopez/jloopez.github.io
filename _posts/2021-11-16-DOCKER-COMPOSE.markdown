@@ -5,7 +5,9 @@ date:   2021-11-09 00:00:00 +0300
 img: docker.png
 tags: [sistemas, redes, docker, docker-compose]
 ---
-Archivo "docker-compose.yml" en la máquina mysqlserver:
+# Instalación LAMP separando los servicios en 2 máquinas.
+
+## Archivo "docker-compose.yml" en la máquina mysqlserver:
 
 ```code
 version: '3'
