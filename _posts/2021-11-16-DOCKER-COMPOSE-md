@@ -1,0 +1,63 @@
+---
+layout: post
+title:  "LAMP DOCKER-COMPOSE"
+date:   2021-11-09 00:00:00 +0300
+img: docker.png
+tags: [sistemas, redes, docker, docker-compose]
+---
+Archivo "docker-compose.yml" en la máquina mysqlserver:
+
+```code
+version: '3'
+services:
+  db:
+    images: mysql
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_nativa_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBRITRARY=1
+```
+
+## Archivo "docker-compose.yml" en la máquina apache:
+
+```code
+version: '3'
+services:
+  apache:
+    build: .
+    ports:
+      - 8081:80
+    restart: always
+```
+
+## Archivo "dockerfile" en la máquina apache:
+
+```code
+FROM php:7.3-apache
+RUN docker-php-ext-install mysqli
+COPY ./bookmedik /var/www/html
+```
+
+Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar los siguientes campos:
+
+```code
+  $this->user="root";
+  $this->pass="root";
+  $this->host="ipmysqlserver:puerto";
+  $this->ddbb="bookmedik";
+```
+Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql:
+
+```code
+$ sudo mysql -u root -h ip-mysql -p < bookmedik/schema.sql
+```
+
+Ahora levantamos en ambas máquinas docker-compose y podremos acceder a phpmyadmin en el puerto 8080 y la web en el puerto 8081.
