@@ -84,8 +84,17 @@ Ahora levantamos en ambas máquinas docker-compose y podremos acceder a phpmyadm
 
 Comandos útiles para docker y docker-compose:
 
-Parar y eliminar todos los contenerdores: $ sudo docker rm $(sudo docker ps -a -q)
-Parar todos los contenedores activos: $ sudo docker stop $(sudo docker ps -a -q)
-Eliminar todas las imagenes que tenemos en la máquina: $ sudo docker rmi $(sudo docker images -q)
+- Parar y eliminar todos los contenerdores: 
+```code
+$ sudo docker rm $(sudo docker ps -a -q)
+```
+- Parar todos los contenedores activos: 
+```code
+$ sudo docker stop $(sudo docker ps -a -q)
+```
+- Eliminar todas las imagenes que tenemos en la máquina: 
+```code
+$ sudo docker rmi $(sudo docker images -q)
+```
 
 
