@@ -30,7 +30,7 @@ services:
       - PMA_ARBRITRARY=1
 ```
 
-![name-of-you-image](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/mysql.jpg?raw=true)
+![mysql](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/mysql.jpg?raw=true)
 
 ## Proyecto en apache:
 
@@ -61,7 +61,7 @@ RUN docker-php-ext-install mysqli
 COPY ./bookmedik /var/www/html
 ```
 
-![docker](assets/img/apache.png)
+![apache](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/apache.png?raw=true)
 
 Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar los siguientes campos:
 
@@ -72,7 +72,7 @@ Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar lo
   $this->ddbb="bookmedik";
 ```
 
-![database](assets/img/databasephp.png)
+![databasephp](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/databasephp.png?raw=true)
 
 Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql:
 
