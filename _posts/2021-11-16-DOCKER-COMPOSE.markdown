@@ -30,7 +30,7 @@ services:
       - PMA_ARBRITRARY=1
 ```
 
-![docker](assets/img/mysql.png)
+![Macbook]({{site.baseurl}}/assets/img/mysql.jpg)
 
 ## Proyecto en apache:
 
