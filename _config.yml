@@ -1,8 +1,7 @@
 title: Jesús López
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Blog personal, donde publicaré todo lo aprendido en
+  el fp superior de administración de sistemas en red.
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -15,7 +14,7 @@ about-author: Administrador de sistemas  # add description
 social-twitter: # add your Twitter handle
 social-youtube: https://www.youtube.com/channel/UCIjqR8jI3wMIP3jmguNbugw
 social-github: jloopez # add your Github handle
-social-linkedin: # add your Linkedin handle
+#social-linkedin: # add your Linkedin handle
 social-email: jmuneraesp@gmail.com
 
 # Disqus
