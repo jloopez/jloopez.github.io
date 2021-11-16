@@ -30,6 +30,17 @@ services:
       - PMA_ARBRITRARY=1
 ```
 
+![docker](img/mysql.png)
+
+## Proyecto en apache:
+
+Vamos a descargar un proyecto web con el que vamos a trabajar. En mi caso voy a utilizar una aplicación de citas medicas publicado en github. El comando que voy a utilizar para descargar es git, quedando de la siguiente manera:
+
+```code
+$ sudo git clone https://github.com/sciscar/bookmedik
+```
+Con esto descargado vamos a hacer la configuración de docker-compose y dockerfile en apache.
+
 ## Archivo "docker-compose.yml" en la máquina apache:
 
 ```code
@@ -50,6 +61,8 @@ RUN docker-php-ext-install mysqli
 COPY ./bookmedik /var/www/html
 ```
 
+![docker](img/apache.png)
+
 Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar los siguientes campos:
 
 ```code
@@ -58,6 +71,9 @@ Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar lo
   $this->host="ipmysqlserver:puerto";
   $this->ddbb="bookmedik";
 ```
+
+![database](img/databasephp.png)
+
 Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql:
 
 ```code
