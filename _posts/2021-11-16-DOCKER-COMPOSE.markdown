@@ -30,7 +30,7 @@ services:
       - PMA_ARBRITRARY=1
 ```
 
-![Macbook]({{site.baseurl}}/assets/img/mysql.jpg)
+![name-of-you-image](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/mysql.jpg?raw=true)
 
 ## Proyecto en apache:
 
