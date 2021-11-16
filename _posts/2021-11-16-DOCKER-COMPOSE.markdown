@@ -82,6 +82,14 @@ $ sudo mysql -u root -h ip-mysql -p < bookmedik/schema.sql
 
 Ahora levantamos en ambas máquinas docker-compose y podremos acceder a phpmyadmin en el puerto 8080 y la web en el puerto 8081.
 
+Acceso por el navegador a phpmyadmin:8080 :
+
+![databasephp](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/phpmyadmin.png?raw=true)
+
+Acceso por el navegador a apache:8081 :
+
+![databasephp](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/bookmedik.png?raw=true)
+
 Comandos útiles para docker y docker-compose:
 
 - Parar y eliminar todos los contenerdores: 
