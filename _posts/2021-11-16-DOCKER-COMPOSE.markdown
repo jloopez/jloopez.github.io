@@ -7,7 +7,11 @@ tags: [sistemas, redes, docker, docker-compose]
 ---
 # Instalación LAMP separando los servicios en 2 máquinas.
 
-Vamos a utilizar 2 máquinas virtuales, en una vamos a instalar un mysqlserver y phpmyadmin con docker-compose y en la otra máquina instalaremos un apache con docker-compose.
+Vamos a utilizar 2 máquinas virtuales:
+Máquina 1 : Mysqlserver y phpmyadmin con docker-compose
+Máquina 2 : Apache con docker-compose.
+
+Tendré ambas máquinas con adaptador puente para tenerlas en la misma red que la máquina host.
 
 ## Archivo "docker-compose.yml" en la máquina mysqlserver:
 
