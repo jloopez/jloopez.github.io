@@ -2,10 +2,12 @@
 layout: post
 title:  "LAMP DOCKER-COMPOSE"
 date:   2021-11-09 00:00:00 +0300
-img: docker.png
+img: docker.jpg
 tags: [sistemas, redes, docker, docker-compose]
 ---
 # Instalación LAMP separando los servicios en 2 máquinas.
+
+Vamos a utilizar 2 máquinas virtuales, en una vamos a instalar un mysqlserver y phpmyadmin con docker-compose y en la otra máquina instalaremos un apache con docker-compose.
 
 ## Archivo "docker-compose.yml" en la máquina mysqlserver:
 
@@ -63,3 +65,11 @@ $ sudo mysql -u root -h ip-mysql -p < bookmedik/schema.sql
 ```
 
 Ahora levantamos en ambas máquinas docker-compose y podremos acceder a phpmyadmin en el puerto 8080 y la web en el puerto 8081.
+
+Comandos útiles para docker y docker-compose:
+
+Parar y eliminar todos los contenerdores: $ sudo docker rm $(sudo docker ps -a -q)
+Parar todos los contenedores activos: $ sudo docker stop $(sudo docker ps -a -q)
+Eliminar todas las imagenes que tenemos en la máquina: $ sudo docker rmi $(sudo docker images -q)
+
+
