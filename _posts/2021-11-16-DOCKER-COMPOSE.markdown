@@ -30,7 +30,7 @@ services:
       - PMA_ARBRITRARY=1
 ```
 
-![docker](img/mysql.png)
+![docker](assets/img/mysql.png)
 
 ## Proyecto en apache:
 
@@ -61,7 +61,7 @@ RUN docker-php-ext-install mysqli
 COPY ./bookmedik /var/www/html
 ```
 
-![docker](img/apache.png)
+![docker](assets/img/apache.png)
 
 Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar los siguientes campos:
 
@@ -72,7 +72,7 @@ Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar lo
   $this->ddbb="bookmedik";
 ```
 
-![database](img/databasephp.png)
+![database](assets/img/databasephp.png)
 
 Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql:
 
