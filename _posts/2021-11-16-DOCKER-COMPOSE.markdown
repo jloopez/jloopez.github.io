@@ -78,7 +78,15 @@ Después editar el archivo "bookmedik/core/controller/Database.php" y cambiar lo
 
 ![databasephp](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/databasephp.png?raw=true)
 
-Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql:
+Y por último ejecutamos lo siguiente en consola para cargar la base de datos de bookmedik en en el servidor de mysql, para ello tienes que tener previamente instalado el paquete "mysql-client":
+
+Insalación paquete "mysql-client":
+
+```code
+$ sudo apt install mysql-client
+```
+
+Envío de la base de datos al servidor mysql:
 
 ```code
 $ sudo mysql -u root -h ip-mysql -p < bookmedik/schema.sql
