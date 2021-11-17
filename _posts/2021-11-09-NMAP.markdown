@@ -65,48 +65,12 @@ No fiable en WIndows, CIsco, BSDI y OS/400. En unix sí.
 -b<servidor> FTPhost--> Sirve para escanear un host desde otro, eso lo hace conectándose el ftp de otra máquina y pidiendole que envía archivos a los puertos que se quiera escanear de otra máquina, según las respuestas sabremos si están abiertos o no. [<usuario>:<contraseña>@]<servidor>[:<puerto>] Casi todos los servidores ftps ya no dejan hacer esto y por lo tanto ya tiene poca utilidad práctica,
 Centrar análisis:
 -p: Sirve para dar los puertos a escanear. Para seleccionar los 65335: -p- o -p all. Nmap tiene una clasificaación interna según su popularidad. Por defecto usa los 1000 ppales. Con -F (fast scan) analiza los 100 ppales. Con --top-ports <numero> Analiza ese numero de ppales (de 1 hasta los 65335). Comprueba los puertos en orden aleatorio, para que eso no pase -r. También podemos seleccionar puertos: 20-30,80,443,1024- Esto ultimo significa que mire en adelante del 1024. También podemos agrupar los puertos por protocolos: U:53,T:21-25,80,139,S:9. También podemos escoger un rango dentro de los puertos populares de nmap: -p [-1024] analiza hasta el 1024 de los incluidos en nmap-services. --port-ratio <ratio> Analiza los puertos más comúnes que un ratio que debe estar entre 0 y 1
+
 -sV Escaneado de versión, se puede regular la intensidad de 0 a 9, por defecto 7.
---version-intensity <numero> Regulamos la intensidad, de forma que cuanto más bajo solo lanzará las sondas más probables, pero no todas. Con esto podemos acortar considerablemente el tiempo de escaneo UDP
+
 -O Deteccion de os
---osscan-limit Para escanear bien un host se necesita que al menos haya 1 puerto abierto y otro cerrado, si no se da esta condición y hemos puesto esto, no intenta hacer predicción de os (ahorra tiempo)
---osscan-guess Cuando la detección de os no es perfecta esto hace que se esfuerce más
-Scripts
---script <filename>|<category>|<directory>|<expression>[,...]
-Para usar los de por efecto vale con -sC o --script=default
-Los tipos que hay son de: auth, broadcast, default, discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, and vuln
-Auth: ejecuta todos sus scripts disponibles para autenticación
-Default: ejecuta los scripts básicos por defecto de la herramienta
-Discovery: recupera información del target o víctima
-External: script para utilizar recursos externos
-Intrusive: utiliza scripts que son considerados intrusivos para la víctima o target
-Malware: revisa si hay conexiones abiertas por códigos maliciosos o backdoors (puertas traseras)
-Safe: ejecuta scripts que no son intrusivos
-Vuln: descubre las vulnerabilidades más conocidas
-All: ejecuta absolutamente todos los scripts con extensión NSE disponibles
-Para buscar scripts:
- nmap --script-help="http-*" -> Los que empiecen por http-
- nmap --script-help="not intrusive" -> Todos menos esos
- nmap --script-help="default or safe" -> Los que estan en uno o en otro o en ambos
- nmap --script-help="default and safe" --> Los que estan en ambos
- nmap --script-help="(default or safe or intrusive) and not http-*"
---script-args <n1>=<v1>,<n2>={<n3>=<v3>},<n4>={<v4>,<v5>}
---script-args-file <filename>
---script-help <filename>|<category>|<directory>|<expression>|all[,...]
---script-trace ---> Da info de como va elscript
---script-updatedb
-Para usar un script solo hay que poner: namp --script Nombre_del_script objetivo --> Al poner el script se ejecutará tanto el script como el escaner, asi que tambien se pueden poner opciones del escaner, podemos añadir “safe=1” para que se ejecuten solo los que sean seguros.
-Control tiempo
-Nmap puede modificar el tiempo en segundos, minutos, ms: --host-timeout arguments 900000ms, 900, 900s, and 15m all do the same thing.
-Nmap divide el numero total de host a escanear en grupos y analiza esos grupos en bloques de forma que hasta que no han sido analizados todos, no pasa al siguiente bloque (y el usuario tampoco recibe ninguna actualización hasta que se haya analizado el bloque) de esta forma, es más óptimo para nmap usar grupos grandes. Por defecto en clase C usa 256.
-Se puede cambiar con--min-hostgroup <numhosts>; --max-hostgroup <numhosts> (Adjust parallel scan group sizes)
-Se puede controlar el numero de escaners en paralelo pero es mejor que no (nmpa ya incorpora control automatico en base al estado de la red): --min-parallelism <numprobes>; --max-parallelism <numprobes>
-Podemos modificar el rtt timeout, pero no suele ser necesario: --min-rtt-timeout <time>, --max-rtt-timeout <time>, --initial-rtt-timeout <time>
-Podemos modificar el numero de intentos:--max-retries <numtries>
-Podemos modificar el tiempo de escaneado de un host: --host-timeout <time>
-Podemos modificar el tiempo entre cada prueba para que vaya despacio: --scan-delay <time>; --max-scan-delay <time>
-Podemos modificar el numero de paquetes por segundo: --min-rate <number>; --max-rate <number>
-Muchos puertos tardan mucho en responder al estar filtrados o cerrados, si solo nos interesan los abiertos, podemos ir más rápido con: --defeat-rst-ratelimit
-Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane
+
+## Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane
 -T (0-1)
 -T0 --> Solo se escanea 1 puerto a la vez y se espera 5min hasta el siguiente
 -T1 y T2 --> Muy parecidos pero solo esperan 15 y 0,4seg respectivamente enttre cada prueba
