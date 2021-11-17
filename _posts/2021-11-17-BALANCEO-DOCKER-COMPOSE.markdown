@@ -53,7 +53,7 @@ volumes:
    datos_db:
 ```
 
-![compose-balanceo](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/compose-balanceo.png?raw=true)
+![compose-balanceo](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/docker-balanceo.png?raw=true)
 
 El documento dockerfile quedaría así:
 
