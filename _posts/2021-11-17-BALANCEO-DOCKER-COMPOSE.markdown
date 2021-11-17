@@ -58,10 +58,8 @@ volumes:
 El documento dockerfile quedaría así:
 
 ```code
-
 FROM php:7.3-apache
 RUN docker-php-ext-install mysqli
-
 ```
 ![dockerfile-balanceo](https://github.com/jloopez/jloopez.github.io/blob/master/assets/img/dockerfile-balanceo.png?raw=true)
 
