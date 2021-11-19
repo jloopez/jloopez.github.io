@@ -46,31 +46,25 @@ Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -P
 
 Técnicas de escaneo de puertos:
 
--sS --> No completa la conexión por lo que no deja rastro, muy buena si se puede usar. (privilegios) Es la que se usa por defecto
--sT --> Completa la conexión, por lo que sí que deja rastro, pero seguro que se puede usar. Por defecto sin privilegios.
--sU --> Más lenta, para UDP. Ppalmente: DNS(53), SNMP(161,162), DHCP(67 y 68), (-sU53,161,162,67,68): abierto(respuesta), cerrado(puerto inalcanzable), filtrado (otro ICMP), abierto/filtrado (nada). En caso de tener abierto/filtrado, -sV envía numerosas peticiones para detectar alguna de las versiones que nmap soporta pudiendo detectar el auténtico estado. Aumenta mucho el tiempo.
+-sS --> No completa la conexión por lo que no deja rastro, muy buena si se puede usar.
+-sT --> Completa la conexión, por lo que sí que deja rastro, pero seguro que se puede usar.
+-sU --> Más lenta, para UDP. 
 
 -sY --> Protocolo SCTP no llega a establecer la conexión, por lo que no hay registros, funciona como -PY
--sN,-sX,-sF --> Null, Fin, Xmas, sirven pueden penetrar algunos firewall y sacar información. Se basan en que los equipos que cumplan el estándar deberán responder con RST todas las peticiones que no tengan levantadas los lags de SYN, RST o ACK: abierto/filtrado(nada), cerrados(RST), filtrado (ICMP inalcanzable). 
+-sN,-sX,-sF --> Null, Fin, Xmas, sirven pueden penetrar algunos firewall y sacar información. 
+
+-sO --> Protocol Ip scan: Envía cabeceras mal y vacías en las que a veces no se distingue ni el protocolo. Si llega ICMP unreachable protocol esta cerrado, si llega unreachable port esta abierto.
     
-No fiable en WIndows, CIsco, BSDI y OS/400. En unix sí.
--sM Maimon scan: Envía flags FIN y ACK, usado para BSD, actualmente devolverá todo como cerrado.
-
--sA, sW --> ACK y Window, sirve para detectar firewalls, para saber si los puertos están filtrados o no. El -sW sí distingue entre abiertos/cerrados ya que los abiertos responden con un valor de window distinto: abiertos(RST con ventana distinto de 0), cerrado (RST ventana = 0), filtrado (ICMP inalcanzable o nada). No todos los equipos funcionan así, así que si sale todo cerrado, es que no funciona, si salen unos pocos abiertos es que funciona bien, y si salen muchos abiertos y pocos cerrados, es que funciona al revés.
-
--sI Idle scan --> Para los casos en los que hay un firewall activo pero que sabemos que este no filtra a una determinada Ip (o cuando queremos simplemente anonimato) podemos usar el escáner zombie (sirve para todos los puertos), para buscar posibles zombies podemos usar el scrpit ipidseq o el exploit auxiliary/scanner/ip/ipidseq. Este escaner se basa en el número IPID de los paquetes IP
---badsum --> Envían la suma mal, los equipos descartarían los paquetes, pero los firewall podrían responder algo, sirve para detectar firewalls
--sZ --> Escaner “raro” de SCTP, al enviar sondas con fragmentos cookie echo deben ser eliminadas si esta abierto o respondidas con ABORT si cerrado. Puede traspasar firewalls que no traspasa el init, lo malo es que no distingue entre filtrado y abierto.
--sO --> Protocol Ip scan: Envía cabeceras mal y vacías en las que a veces no se distingue ni el protocolo. Si llega ICMP unreachable protocol esta cerrado, si llega unreachable port esta abierto, si llega otro error, filtrado, si no llega nada, abierto|filtrado
--b<servidor> FTPhost--> Sirve para escanear un host desde otro, eso lo hace conectándose el ftp de otra máquina y pidiendole que envía archivos a los puertos que se quiera escanear de otra máquina, según las respuestas sabremos si están abiertos o no. [<usuario>:<contraseña>@]<servidor>[:<puerto>] Casi todos los servidores ftps ya no dejan hacer esto y por lo tanto ya tiene poca utilidad práctica,
-Centrar análisis:
--p: Sirve para dar los puertos a escanear. Para seleccionar los 65335: -p- o -p all. Nmap tiene una clasificaación interna según su popularidad. Por defecto usa los 1000 ppales. Con -F (fast scan) analiza los 100 ppales. Con --top-ports <numero> Analiza ese numero de ppales (de 1 hasta los 65335). Comprueba los puertos en orden aleatorio, para que eso no pase -r. También podemos seleccionar puertos: 20-30,80,443,1024- Esto ultimo significa que mire en adelante del 1024. También podemos agrupar los puertos por protocolos: U:53,T:21-25,80,139,S:9. También podemos escoger un rango dentro de los puertos populares de nmap: -p [-1024] analiza hasta el 1024 de los incluidos en nmap-services. --port-ratio <ratio> Analiza los puertos más comúnes que un ratio que debe estar entre 0 y 1
+## Centrar análisis:
+    
+-p: Sirve para dar los puertos a escanear. Para seleccionar los 65335: -p- o -p all. 
 
 -sV Escaneado de versión, se puede regular la intensidad de 0 a 9, por defecto 7.
 
 -O Deteccion de os
 
 ## Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane
+    
 -T (0-1)
 -T0 --> Solo se escanea 1 puerto a la vez y se espera 5min hasta el siguiente
 -T1 y T2 --> Muy parecidos pero solo esperan 15 y 0,4seg respectivamente enttre cada prueba
