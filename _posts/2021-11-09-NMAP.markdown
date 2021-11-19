@@ -16,7 +16,7 @@ nmap -sV -sC -O -n -oA nmapscan 192.168.0.1/24
 
 -iR numero --> Número de Ips aleatorias, se pueden excluir posibles Ips con --exclude <Ips> o --excludefile <fichero>
 
-Descubrimiento de equipos:
+## Descubrimiento de equipos:
 
 Podemos usar máscaras/24
 -sL: No es invasivo, lista los objetivos realizando peticiones de DNS para resolver nombres. Sirve para saber si por ejemplo 192.168.1.0/24 todas las Ips son objetivos nuestros.
