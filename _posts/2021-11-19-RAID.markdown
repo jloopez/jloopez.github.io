@@ -1,0 +1,124 @@
+---
+layout: post
+title:  "RAID en Debian/Ubuntu"
+date:   2021-11-19 00:00:00 +0300
+img: raid.png
+tags: [sistemas, Debian, Ubuntu, Raid]
+---
+## RAID 0
+
+En un RAID 0, los datos del sistema se dividen en bloques que se escriben en todas las unidades de la matriz. Al utilizar varios discos (al menos 2) al mismo tiempo, ofrece un rendimiento de E/S superior. Este rendimiento puede mejorarse mediante el uso de varios controladores, idealmente un controlador por disco.
+
+Ventaja: Velocidad en escritura, lectura.
+
+## RAID 1
+
+Los datos se almacenan dos veces escribiéndolos tanto en la unidad de datos (o en el conjunto de unidades de datos) como en una unidad duplicada (o en un conjunto de unidades). Si falla una unidad, el controlador usa la unidad de datos o la unidad duplicada para la recuperación de datos y continúa la operación. Necesita al menos 2 unidades para una matriz RAID 1.
+
+Ventaja: Seguridad, al tener la información replicada en ambos discos.
+
+## Vamos a crear un raid con dos discos.
+
+Disco 1:
+
+```code
+jlopez$ sudo fdisk /dev/sdb
+
+-g -> crea tabla de particiones.
+-n -> crea partición nueva.
+-w -> escribe cambios en el disco.
+```
+
+Disco 2:
+
+```code
+jlopez$ sudo fdisk /dev/sdc
+
+-g -> crea tabla de particiones.
+-n -> crea partición nueva.
+-w -> escribe cambios en el disco.
+```
+
+## Crear matríz del raid
+
+Vamos a crear la matríz del raid con los dos discos que hemos particionado.
+
+```code
+jloez$ sudo mdadm –create –verbose /dev/md0 –level=1 -raid-devices=2 /dev/sdb1
+/dev/sdc1
+
+```
+Opciones:
+
+-create -> crear el raid.
+-verbose -> ver el proceso en tiempo real por pantalla (no es necesario).
+-level=1 -> es el tipo de raid que vamos a crear, si quieres crear raid 0 pondrias raid=0.
+-raid-devices=2 -> es el número de discos que vamos a utilizar.
+
+Ahora que ya hemos creado el raid, vamos a ver la información del raid.
+
+```code
+jlopez$ sudo mdadm --detail /dev/md0
+
+```
+
+## Nombrar el raid como "/dev/md0"
+
+Para fijar el nombre del raid como /dev/md0 tenemos que añadir la configuración en el archivo /etc/mdadm/mdadm.conf.
+
+```code
+jlopez$ sudo su
+jlopez$ mdadm -Es >> /etc/mdadm/mdadm.conf
+jlopez$ exit
+
+```
+
+Ahora editamos el archivo y añadimos una línea nueva.
+
+ARRAY /dev/md0 UUID=2152345hg436341gl5kj2h5425
+
+## Registrar el RAID al fichero mdadm
+
+```code
+jlopez$ sudo update-initramfs -u
+jlopez$ sudo reboot
+
+```
+
+## Dar formato al raid
+
+Ahora ya tenemos el raid creado, tenemos que darle formato para utilizarlo.
+
+```code
+jlopez$ sudo mkfs.ext4 /dev/md0
+
+```
+
+## Montaje del RAID
+
+Por último vamos a montar el RAID en un directorio. En mi caso voy a crear un directorio en /media/raid0/.
+```code
+
+jlopez$ sudomkdir /media/raid0
+```
+Ahora añado el punto de montaje en el fstab para que lo monte automáticamente en el inicio de la máquina. Para ello añado una línea en el archivo /etc/fstab.
+
+/dev/md0      /media/raid0   ext4    defaults   0   2
+
+/dev/md0 -> el nombre del raid que es lo que quiero montar.
+/media/raid0 -> el directorio donde quiero que se monte.
+ext4 -> el formato en el que esta formateado el raid.
+defaults 0 2 -> es la configuración que recomienda en nuevos discos.
+
+
+## Rehacer el RAID
+
+Si quitamos un disco, y vemos el estado del raid con la opción --detail comentada antes, veremos que sigue funcionando pero que tan solo tiene 1 disco. Para volver a añadir un disco al raid, tenemos que conectar un disco del mismo tamaño, darle tabla de particiones, y la partición. 
+
+Para añadir el disco al raid:
+
+```code
+jlopez$ sudo mdadm --manage /dev/md0 --add /dev/sdc
+
+```
+Ahora compruebas con el --detail y vemos que ya tenemos el raid con los dos discos.
