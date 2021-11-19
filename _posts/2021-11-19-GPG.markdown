@@ -1,0 +1,114 @@
+---
+layout: post
+title:  "GPG"
+date:   2021-09-22 00:00:00 +0300
+img: gpg.png
+tags: [sistemas, Debian, Ubuntu, GnuPG]
+---
+¿Qué es GPG?
+
+Permite cifrar y firmar tus datos y comunicaciones, incluye un sistema versátil de gestión de claves, así como módulos de acceso para toda clase de directorios de claves públicas.
+
+## Gestión básica de claves
+
+Generar par de claves.
+
+```code
+jlopez$ gpg --gen-key
+
+```
+- Pide nombre, apellido y correo.
+- Contraseña.
+
+Mostrar claves públicas instaladas.
+
+```code
+jlopez$ gpg -k
+```
+
+Mostrar claves privadas instaladas.
+
+```code
+jlopez$ gpg -K
+```
+
+Exportar clave pública a archivo .key.
+
+```code
+jlopez$ gpg --export -a idclave > publica.key
+```
+
+Importar clave pública.
+
+```code
+jlopez$ gpg --import publica.key
+```
+
+Exportar clave privada.
+
+```code
+jlopez$ gpg --export-secret-key -a idclave > privada.key
+```
+
+Importar clave privada.
+
+```code
+jlopez$ gpg --allow-secret-key-import --import privada.key
+```
+
+## Generar certificado de revocación
+
+```code
+jlopez$ gpg --gen-key Jesus > jesusrevoke.cert
+```
+"Jesus" -> es el nombre de la clave.
+Pide la razón, y la contraseña privada para poder exportar.
+
+## Firmar documento legible ASCII
+
+```code
+jlopez$ gpg --clearsign documento.txt
+```
+Te solicita la contraseña de la clave privada y genera un .asc que incluye tu firma en texto plano.
+
+## Verificar firma de un archivo ASCII
+
+Necesitamos la clave pública de la persona que ha firmado el documento instlada.
+
+```code
+jlopez$ gpg documento.asc
+```
+o
+```code
+jlopez$ gpg --verify documento.asc
+```
+
+## Firmar documento
+
+```code
+jlopez$ gpg --detach-sign hola.txt
+```
+
+Genera un archivo .gpg que contiene la firma.
+
+## Verifica la firma:
+
+```code
+jlopez$ gpg --verify hola.gpg hola.txt
+```
+
+## Cifrado simétrico
+
+Para cifrar simétricamente un documento utilizamos la opción -c.
+
+```code
+jlopez$ gpg -c documento.txt
+```
+
+El programa nos solicita una contraseña con la que él cifra el documento.
+
+Para descifrarlo le enviamos el documento y la contraseña al destinatario.
+
+```code
+jlopez$ gpg documento.gpg
+```
