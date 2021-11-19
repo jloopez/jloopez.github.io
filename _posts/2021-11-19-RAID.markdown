@@ -5,7 +5,7 @@ date:   2021-11-19 00:00:00 +0300
 img: raid.png
 tags: [sistemas, Debian, Ubuntu, Raid]
 ---
-## RAID 0
+### RAID 0
 
 En un RAID 0, los datos del sistema se dividen en bloques que se escriben en todas las unidades de la matriz. Al utilizar varios discos (al menos 2) al mismo tiempo, ofrece un rendimiento de E/S superior. Este rendimiento puede mejorarse mediante el uso de varios controladores, idealmente un controlador por disco.
 
