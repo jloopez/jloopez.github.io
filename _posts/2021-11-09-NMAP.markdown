@@ -44,7 +44,7 @@ Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -P
 -n No DNS
 -R DNS siempre
 
-Técnicas de escaneo de puertos:
+## Técnicas de escaneo de puertos:
 
 -sS --> No completa la conexión por lo que no deja rastro, muy buena si se puede usar.
 -sT --> Completa la conexión, por lo que sí que deja rastro, pero seguro que se puede usar.
