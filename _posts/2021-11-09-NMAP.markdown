@@ -65,9 +65,9 @@ Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -P
 
 ## Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane
     
--T (0-1)
--T0 --> Solo se escanea 1 puerto a la vez y se espera 5min hasta el siguiente
--T1 y T2 --> Muy parecidos pero solo esperan 15 y 0,4seg respectivamente enttre cada prueba
--T3 --> Funcionamiento por defecto, incluye en paralelo
--T4 --> --max-rtt-timeout 1250ms --min-rtt-timeout 100ms --initial-rtt-timeout 500ms --max-retries 6 --max-scan-delay 10ms
--T5 --> --max-rtt-timeout 300ms --min-rtt-timeout 50ms --initial-rtt-timeout 250ms --max-retries 2 --host-timeout 15m --max-scan-delay 5ms
+-T (0-1).
+-T0 --> Solo se escanea 1 puerto a la vez y se espera 5min hasta el siguiente.
+-T1 y T2 --> Muy parecidos pero solo esperan 15 y 0,4seg respectivamente enttre cada prueba.
+-T3 --> Funcionamiento por defecto, incluye en paralelo.
+-T4 --> --max-rtt-timeout 1250ms --min-rtt-timeout 100ms --initial-rtt-timeout 500ms --max-retries 6 --max-scan-delay 10ms.
+-T5 --> --max-rtt-timeout 300ms --min-rtt-timeout 50ms --initial-rtt-timeout 250ms --max-retries 2 --host-timeout 15m --max-scan-delay 5ms.
