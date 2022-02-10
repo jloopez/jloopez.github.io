@@ -23,11 +23,11 @@ Podemos usar máscaras/24
     
 Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -PE -PP
    
--Pn No ping --> útil si se sabe que todos están activos (sino lo estuviera alguno se podría perder mucho tiempo, pero también saca falsos negativos esta opción diciendo que no esta activo), impide la fase de descubirmiento
+***-Pn:*** No ping --> útil si se sabe que todos están activos (sino lo estuviera alguno se podría perder mucho tiempo, pero también saca falsos negativos esta opción diciendo que no esta activo), impide la fase de descubirmiento
     
--sn No port scan: Tras completar fase de reconocimiento no analiza puertos. Es relativamente sigilosa, y permite un pequeño reconocimiento de la red. Con privilegios envía un ACK (-PA) al 80, un SYN(-PS) al 443 y un echo request y un Timestamp request, sin privilegios siempre completa conexiones. Si el objetivo es de la red, solo usa ARP(-PR). Si se usa con otra opción solo se lanzan los paquetes de la otra opción.
+***-sn:*** No port scan: Tras completar fase de reconocimiento no analiza puertos. Es relativamente sigilosa, y permite un pequeño reconocimiento de la red. Con privilegios envía un ACK (-PA) al 80, un SYN(-PS) al 443 y un echo request y un Timestamp request, sin privilegios siempre completa conexiones. Si el objetivo es de la red, solo usa ARP(-PR). Si se usa con otra opción solo se lanzan los paquetes de la otra opción.
     
--PR Ping ARP: Se usa por defecto cuando se analizan equipos de nuestra red, es más rápido que usar pings. Si no se quiere usar paquetes ARP hay que usar --send-ip.
+***-PR:*** Ping ARP: Se usa por defecto cuando se analizan equipos de nuestra red, es más rápido que usar pings. Si no se quiere usar paquetes ARP hay que usar --send-ip.
     
 -PS<puertos> SYN: envía paquetes de SYN a los que si responde SYN/ACK es que esta abierto(al que se reponde con RST para no acabar la conexión), si responde RST esta cerrado y si no responde es inalcanzable. En caso de no tener privilegios automáticamente se usa una conexión total. Si no se dan puertos, lo lanza al 80.
 
