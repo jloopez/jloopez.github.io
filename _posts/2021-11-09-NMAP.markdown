@@ -63,7 +63,7 @@ Por defecto Nmap lanza una fase de descubrimiento que consta de: -PA80 -PS443 -P
 
 -O Deteccion de os
 
-## Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane
+## Para definir lo agresivo que queremos que sea nmap: -T paranoid|sneaky|polite|normal|aggressive|insane:
     
 -T (0-1).
 -T0 --> Solo se escanea 1 puerto a la vez y se espera 5min hasta el siguiente.
