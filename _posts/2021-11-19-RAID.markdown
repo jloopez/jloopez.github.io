@@ -50,10 +50,10 @@ jloez$ sudo mdadm –create –verbose /dev/md0 –level=1 -raid-devices=2 /dev/
 ```
 Opciones:
 
--create -> crear el raid.
--verbose -> ver el proceso en tiempo real por pantalla (no es necesario).
--level=1 -> es el tipo de raid que vamos a crear, si quieres crear raid 0 pondrias raid=0.
--raid-devices=2 -> es el número de discos que vamos a utilizar.
+-create -> crear el raid.  
+-verbose -> ver el proceso en tiempo real por pantalla (no es necesario).  
+-level=1 -> es el tipo de raid que vamos a crear, si quieres crear raid 0 pondrias raid=0.  
+-raid-devices=2 -> es el número de discos que vamos a utilizar.  
 
 Ahora que ya hemos creado el raid, vamos a ver la información del raid.
 
