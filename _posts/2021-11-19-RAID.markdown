@@ -105,10 +105,10 @@ Ahora añado el punto de montaje en el fstab para que lo monte automáticamente 
 
 /dev/md0      /media/raid0   ext4    defaults   0   2
 
-/dev/md0 -> el nombre del raid que es lo que quiero montar.
-/media/raid0 -> el directorio donde quiero que se monte.
-ext4 -> el formato en el que esta formateado el raid.
-defaults 0 2 -> es la configuración que recomienda en nuevos discos.
+/dev/md0 -> el nombre del raid que es lo que quiero montar.  
+/media/raid0 -> el directorio donde quiero que se monte.  
+ext4 -> el formato en el que esta formateado el raid.  
+defaults 0 2 -> es la configuración que recomienda en nuevos discos.  
 
 
 ## Rehacer el RAID
