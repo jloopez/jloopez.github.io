@@ -2,7 +2,7 @@
 layout: post
 title:  "LAMP BALANCEO DOCKER-COMPOSE"
 date:   2021-11-09 00:00:00 +0300
-img: haproxy.png
+img: balanceolampdockercompose.png
 tags: [sistemas, redes, docker, docker-compose, apache, balanceo]
 ---
 
