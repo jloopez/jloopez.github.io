@@ -2,7 +2,7 @@
 layout: post
 title:  "RAID en Debian/Ubuntu"
 date:   2021-11-19 00:00:00 +0300
-img: raid.png
+img: raidmdadm.png
 tags: [sistemas, Debian, Ubuntu, Raid]
 ---
 ### RAID 0
