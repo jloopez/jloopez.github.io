@@ -103,7 +103,9 @@ jlopez$ sudomkdir /media/raid0
 ```
 Ahora añado el punto de montaje en el fstab para que lo monte automáticamente en el inicio de la máquina. Para ello añado una línea en el archivo /etc/fstab.
 
+```code
 /dev/md0      /media/raid0   ext4    defaults   0   2
+```
 
 /dev/md0 -> el nombre del raid que es lo que quiero montar.  
 /media/raid0 -> el directorio donde quiero que se monte.  
