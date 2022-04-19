@@ -2,7 +2,7 @@
 layout: post
 title:  "LAMP DOCKER-COMPOSE"
 date:   2021-11-09 00:00:00 +0300
-img: docker.jpg
+img: lampdockercompose.png
 tags: [sistemas, redes, docker, docker-compose]
 ---
 # Instalación LAMP separando los servicios en 2 máquinas.
